@@ -1,0 +1,6 @@
+{
+    "yaml.schemas": {
+        "file:///c%3A/Users/flyla/.vscode/extensions/docsmsft.docs-yaml-0.2.9/out/yaml-support/toc.schema.json": "/toc\\.yml/i",
+        "https://json.schemastore.org/github-workflow.json": "vscode-vfs://github%2B7b2276223a312c22726566223a7b2274797065223a362c226964223a226d6173746572227d7d/texas-mcallen-mission/actions-secret-modifier/.github/workflows/deploy.yml"
+    }
+}
