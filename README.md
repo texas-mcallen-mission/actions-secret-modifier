@@ -59,6 +59,8 @@ with:
 
 ### For organizations
 
+*note: seems like you need admin rights on your access token for this to work.*
+
 ```YAML
 uses: hmanzur/actions-set-secret@v2.0.0
 with:
