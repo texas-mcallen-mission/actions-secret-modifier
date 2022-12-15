@@ -1,5 +1,5 @@
 const { Octokit } = require('@octokit/core')
-const sodium = require('tweetsodium')
+const sodium = require('libsodium')
 
 /**
  * @class Api
