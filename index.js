@@ -19,17 +19,16 @@ const boostrap = async (api, secret_name, secret_value) => {
 
     const data = await api.createSecret(key_id, key, secret_name, secret_value)
 
-      if (api.isOrg()) {
+    if (api.isOrg()) {
       Core.info('\u001b[3m Updating Org Secret')
       data.visibility = Core.getInput('visibility')
 
       if (data.visibility === 'selected') {
         data.selected_repository_ids = Core.getInput('selected_repository_ids')
       }
+    } else {
+      Core.info('\u001b[3m Updating Repo Secret')
     }
-    else {
-        Core.info('\u001b[3m Updating Repo Secret')
-        }
 
     const response = await api.setSecret(data, secret_name)
 
