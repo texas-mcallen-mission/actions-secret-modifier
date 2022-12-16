@@ -14,13 +14,13 @@ const Api = require('./src/api')
  */
 const boostrap = async (api, secret_name, secret_value) => {
 
-    try {
-        let fancyTextTreatment = '\u001b[3m'
-        if (api.isOrg()) {
-          Core.info(fancyTextTreatment + ' Updating Org Secret')
-        } else {
-          Core.info(fancyTextTreatment + ' Updating Repo Secret')
-        }
+  try {
+    let fancyTextTreatment = '\u001b[3m'
+    if (api.isOrg()) {
+      Core.info(fancyTextTreatment + ' Updating Org Secret')
+    } else {
+      Core.info(fancyTextTreatment + ' Updating Repo Secret')
+    }
     const {key_id, key} = await api.getPublicKey()
 
     const data = await api.createSecret(key_id, key, secret_name, secret_value)
