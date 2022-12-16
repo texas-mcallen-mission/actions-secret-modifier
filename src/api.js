@@ -69,6 +69,7 @@ module.exports = class Api {
       base: this._base,
       repo: this._repo,
       name,
+      data
     })
   }
 
