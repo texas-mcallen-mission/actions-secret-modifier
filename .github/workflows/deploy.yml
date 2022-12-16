@@ -73,14 +73,15 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: elgohr/Github-Release-Action@v4 
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        uses: elgohr/Github-Release-Action@v4 # was actions/create-release@v1
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
         with:
-          tag_name: v${{ github.event.inputs.version }}
-          release_name: v${{ github.event.inputs.version }}
-          commitish: release/${{ github.event.inputs.version }}
+          tag_name: v${{ github.event.inputs.version }} # Straight Port
+          release_name: v${{ github.event.inputs.version }} # 
+          target_commitish: release/${{ github.event.inputs.version }} # was commitish
           body: |
             Created on ${{ env.TIME }} using automated Workflow by ${{ github.actor }}
           draft: false
           prerelease: false
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}

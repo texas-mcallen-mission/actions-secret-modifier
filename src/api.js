@@ -48,7 +48,7 @@ module.exports = class Api {
 
     const keyBytes = Buffer.from(key, 'base64')
 
-    const encryptedBytes = sodium.seal(messageBytes, keyBytes)
+    const encryptedBytes = sodium.crypto_box_seal(messageBytes, keyBytes) // thanks to https://github.com/github/tweetsodium/blob/main/README.md
 
     return {
       encrypted_value: Buffer.from(encryptedBytes).toString('base64'),
