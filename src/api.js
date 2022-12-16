@@ -65,10 +65,10 @@ module.exports = class Api {
    */
   async setSecret(data, name) {
     // let testString = "PUT /"+this._base + "/" + this.repo + "/actions/secrets/" + name
-    return this.octokit.request('PUT /{base}/{repo}/actions/secrets/{name}', {
-      base: this._base,
-      repo: this._repo,
-      name,
+    return this.octokit.request(testString, {
+    //   base: this._base,
+    //   repo: this._repo,
+    //   name,
       data
     })
   }
