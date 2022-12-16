@@ -73,7 +73,7 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: elgohr/Github-Release-Action@v4 # was actions/create-release@v1
+        uses: softprops/action-gh-release@v1 #elgohr/Github-Release-Action@v4 # was actions/create-release@v1
         # env:
         #   GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
         with:
