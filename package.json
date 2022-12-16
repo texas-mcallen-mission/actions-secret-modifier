@@ -13,7 +13,8 @@
     "@octokit/core": "^4.1.0",
     "encoding": "^0.1.13",
     "eslint": "8.29.0",
-    "libsodium": "^0.7.10"
+    "libsodium": "^0.7.10",
+    "libsodium-wrappers": "^0.7.10"
   },
   "devDependencies": {
     "eslint-config-strongloop": "^2.1.0",
