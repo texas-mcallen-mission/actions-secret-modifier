@@ -90,14 +90,20 @@ module.exports = class Api {
         data
       })
     } else {
-      let test22 = this._repo.replaceAll("%2F","/")
-      let test23 = 'PUT /' + this._base + "/texas-mcallen-mission/deploy-tester/actions/secrets/" + name
-      return this.octokit.request(test23 /*'PUT /{base}/{repo}/actions/secrets/{name}'*/, {
-        base: this._base,
-        repo: test22,
-        name: name,
-        data
-      })
+    //   let test22 = this._repo.replaceAll("%2F","/")
+    //   let test23 = 'PUT /' + this._base + "/texas-mcallen-mission/deploy-tester/actions/secrets/" + name
+    //   return this.octokit.request(test23 /*'PUT /{base}/{repo}/actions/secrets/{name}'*/, {
+    //     base: this._base,
+    //     repo: test22,
+    //     name: name,
+    //     data
+    //   })
+        return this.octokit.request('PUT /:base/:repo/actions/secrets/:name', {
+            base: this._base,
+            repo: this._repo,
+            name,
+            data
+        })
     }
 
   }
