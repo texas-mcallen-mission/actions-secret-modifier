@@ -83,3 +83,8 @@ with:
 
 - [Get an organization public key](https://developer.github.com/v3/actions/secrets/#get-an-organization-public-key)
 - [Create or update an organization secret](https://developer.github.com/v3/actions/secrets/#create-or-update-an-organization-secret)
+
+
+## Attribution
+
+Thanks to [hmanzur](https://github.com/hmanzur/) for the [repo](https://github.com/hmanzur/actions-set-secret) we forked this from!

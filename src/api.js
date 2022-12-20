@@ -10,14 +10,21 @@ module.exports = class Api {
    *
    * @param {any} auth - Auth method
    * @param {string} repo - Repository in format username/repo-name
-   * @param {boolean} org - Is a Organization
+   * @param {boolean} org - Is a Organization (OPTIONAL!)
+   * @param {string} org_name - organization name (OPTIONAL as long as org is false)
    * @returns {Promise<{data: object}>} - Fetch response
    */
-  constructor(auth, repo, org = false) {
+  constructor(auth, repo, org, org_name) {
+    console.log('ORG_NAME:', org_name)
     this.octokit = new Octokit({ auth })
     this._repo = repo
-    this._org = org
-    this._base = org ? 'orgs' : 'repos'
+    this._base = 'repos'
+    if (org !== undefined && org === true) {
+      this._org = org
+      this._org_name = org_name
+      this._base = 'orgs'
+    }
+
   }
 
   /**
@@ -26,12 +33,22 @@ module.exports = class Api {
    * @returns {Promise<{data: object}>} - Fetch response
    */
   async getPublicKey() {
-    let { data } = await this.octokit.request('GET /:base/:repo/actions/secrets/public-key', {
-      base: this._base,
-      repo: this._repo
-    })
+    // let request_string = 'GET /' + this._base
+    if (this._org) {
+      console.log('OOOORG NAME', this._org_name)
+      console.log('test')
+      let { data } = await this.octokit.request('GET /orgs/texas-mcallen-mission/actions/secrets/public-key', {
+        org_name: this._org_name
+      })
+      return data
+    } else {
+      let { data } = await this.octokit.request('GET /:base/:repo/actions/secrets/public-key', {
+        base: this._base,
+        repo: this._repo
+      })
 
-    return data
+      return data
+    }
   }
 
   /**
@@ -64,13 +81,21 @@ module.exports = class Api {
    * @returns {Promise} - Fetch Response
    */
   async setSecret(data, name) {
-    let testString = 'PUT /' + this._base + '/' + this.repo + '/actions/secrets/' + name
-    return this.octokit.request(testString /*'PUT /:base/:repo/actions/secrets/:name'*/, {
-    //   base: this._base,
-    //   repo: this._repo,
-    //   name,
-      data
-    })
+    if (this.isOrg()) {
+      return this.octokit.request('PUT /orgs/{org_name}/actions/secrets/{name}', {
+        org_name: this._org_name,
+        name: name,
+        data
+      })
+    } else {
+      return this.octokit.request('PUT /{base}/{repo}/actions/secrets/{name}', {
+        base: this._base,
+        repo: this._repo,
+        name: name,
+        data
+      })
+    }
+
   }
 
   /**
