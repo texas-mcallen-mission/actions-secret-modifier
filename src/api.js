@@ -98,12 +98,12 @@ module.exports = class Api {
     //     name: name,
     //     data
     //   })
-        return this.octokit.request('PUT /:base/:repo/actions/secrets/:name', {
-            base: this._base,
-            repo: this._repo,
-            name,
-            data
-        })
+    return this.octokit.request('PUT /:base/:repo/actions/secrets/:name', {
+      base: this._base,
+      repo: this._repo,
+      name,
+      data
+    })
     }
 
   }
