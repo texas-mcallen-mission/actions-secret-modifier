@@ -87,7 +87,7 @@ try {
     let api
     if (Core.getInput('org-name') !== "") {
         let org_name = Core.getInput('org-name')
-        api = new Api(token, org_name, true)
+        api = new Api(token, org_name, true,org_name)
     } else {
         api = new Api(token, repository, !!org)
     }
