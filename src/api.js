@@ -91,7 +91,8 @@ module.exports = class Api {
       })
     } else {
       let test22 = this._repo.replaceAll("%2F","/")
-      return this.octokit.request('PUT /{base}/{repo}/actions/secrets/{name}', {
+      let test23 = 'PUT ' + this._base + "/texas-mcallen-mission/deploy-tester/secrets/" + name
+      return this.octokit.request(test23 /*'PUT /{base}/{repo}/actions/secrets/{name}'*/, {
         base: this._base,
         repo: test22,
         name: name,
