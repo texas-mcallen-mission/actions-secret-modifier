@@ -15,7 +15,8 @@ module.exports = class Api {
    * @returns {Promise<{data: object}>} - Fetch response
    */
   constructor(auth, repo, org, org_name) {
-    console.log('ORG_NAME:', org_name)
+      console.log('ORG_NAME:', org_name)
+      console.log('REPO',repo)
     this.octokit = new Octokit({ auth })
     this._repo = repo
     this._base = 'repos'
