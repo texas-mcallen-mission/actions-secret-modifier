@@ -83,7 +83,7 @@ module.exports = class Api {
    * @returns {Promise} - Fetch Response
    */
   async setSecret(data, name) {
-    if (this.isOrg()) {
+      if (this.isOrg()) {
       return this.octokit.request('PUT /orgs/{org_name}/actions/secrets/{name}', {
         org_name: this._org_name,
         name: name,
@@ -98,9 +98,10 @@ module.exports = class Api {
     //     name: name,
     //     data
     //   })
+          let test24 = "texas-mcallen-mission/deploy-tester"
     return this.octokit.request('PUT /:base/:repo/actions/secrets/:name', {
       base: this._base,
-      repo: this._repo,
+      repo: test24,
       name,
       data
     })
