@@ -37,12 +37,13 @@ module.exports = class Api {
     if (this._org) {
       console.log('OOOORG NAME', this._org_name)
       console.log('test')
-      let { data } = await this.octokit.request('GET /orgs/texas-mcallen-mission/actions/secrets/public-key', {
+      let { data } = await this.octokit.request('GET /orgs/{org_name}/actions/secrets/public-key', {
         org_name: this._org_name
       })
       return data
     } else {
-      let { data } = await this.octokit.request('GET /:base/:repo/actions/secrets/public-key', {
+        let testString = 'GET /' + String(this._base).trim() + "/" + String(this._repo).trim() + "/actions/secrets/public-key"
+      let { data } = await this.octokit.request(/*'GET /:base/:repo/actions/secrets/public-key'*/ testString, {
         base: this._base,
         repo: this._repo
       })
