@@ -79,15 +79,15 @@ async function boostrap(api, secret_name, secret_value, is_debug = false){
 
 try {
   // `who-to-greet` input defined in action metadata file
-  const name = Core.getInput('name')
-  const value = Core.getInput('value')
-  const repository = Core.getInput('repository')
+  const name = String(Core.getInput('name')).trim()
+  const value = String(Core.getInput('value')).trim()
+  const repository = String(Core.getInput('repository')).trim()
   const token = Core.getInput('token')
-  const org = Core.getInput('org')
+  const org = String(Core.getInput('org')).trim()
     let api
     if (Core.getInput('org-name') !== "") {
-        let org_name = Core.getInput('org-name')
-        api = new Api(token, org_name, true,org_name)
+        let org_name = String(Core.getInput('org-name')).trim()
+        api = new Api(token, org_name, true, org_name)
     } else {
         api = new Api(token, repository, !!org)
     }
@@ -95,6 +95,7 @@ try {
   boostrap(api, name, value)
 
 } catch (error) {
+    // console.log((error))
   Core.setFailed(error.message)
 }
 
