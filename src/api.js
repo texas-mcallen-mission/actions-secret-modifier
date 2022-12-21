@@ -43,7 +43,7 @@ module.exports = class Api {
       })
       return data
     } else {
-      let testString = 'GET /' + String(this._base).trim() + '/' + String(this._repo).trim() + '/actions/secrets/public-key'
+    //   let testString = 'GET /' + String(this._base).trim() + '/' + String(this._repo).trim() + '/actions/secrets/public-key'
       let { data } = await this.octokit.request('GET /{base}/{repo}/actions/secrets/public-key' /* testString*/, {
         base: this._base,
         repo: this._repo
@@ -90,7 +90,7 @@ module.exports = class Api {
         data
       })
     } else {
-      let split_args = String(this._repo).split('/');
+      let split_args = String(this._repo).split('/')
       return this.octokit.request('PUT /{base}/{owner}/{repo}/actions/secrets/{name}', {
         base: 'repos',
         owner: split_args[0],
@@ -100,7 +100,6 @@ module.exports = class Api {
       })
     }
   }
-
 
 
   /**
