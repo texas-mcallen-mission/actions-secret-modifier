@@ -38,8 +38,9 @@ module.exports = class Api {
     if (this._org) {
       console.log('OOOORG NAME', this._org_name)
       console.log('test')
+      let splitString = this._org_name.split('/')
       let { data } = await this.octokit.request('GET /orgs/{org_name}/actions/secrets/public-key', {
-        org_name: this._org_name
+        org_name: splitString[0].trim()
       })
       return data
     } else {
