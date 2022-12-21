@@ -83,40 +83,25 @@ module.exports = class Api {
    * @returns {Promise} - Fetch Response
    */
   async setSecret(data, name) {
-      if (this.isOrg()) {
+    if (this.isOrg()) {
       return this.octokit.request('PUT /orgs/{org_name}/actions/secrets/{name}', {
         org_name: this._org_name,
         name: name,
         data
-      })
+      });
     } else {
-    //   let test22 = this._repo.replaceAll("%2F","/")
-    //   let test23 = 'PUT /' + this._base + "/texas-mcallen-mission/deploy-tester/actions/secrets/" + name
-    //   return this.octokit.request(test23 /*'PUT /{base}/{repo}/actions/secrets/{name}'*/, {
-    //     base: this._base,
-    //     repo: test22,
-    //     name: name,
-    //     data
-    //   })
-          let test24 = "texas-mcallen-mission/deploy-tester"
-//     return this.octokit.request('PUT /:base/:repo/actions/secrets/:name', {
-//       base: this._base,
-//       repo: test24,
-//       name,
-//       data
-//     })
-          let test25 = String(this._repo).split("/")
-          return this.octokit.request('PUT /{base}/{owner}/{repo}/actions/secrets/{name}', {
-    base: 'repos',
-            owner: test25[0],
-            repo: test25[1],
-//     repo: 'texas-mcallen-mission/deploy-tester',
-    name,
-    data
-})
+      let split_args = String(this._repo).split("/");
+      return this.octokit.request('PUT /{base}/{owner}/{repo}/actions/secrets/{name}', {
+        base: 'repos',
+        owner: split_args[0],
+        repo: split_args[1],
+        name,
+        data
+      });
     }
-
   }
+
+
 
   /**
    * Organization checker

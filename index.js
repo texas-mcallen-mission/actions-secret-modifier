@@ -16,33 +16,32 @@ const Api = require('./src/api')
  * @see https://dev.to/habibmanzur/placeholder-title-5e62
  */
 async function boostrap(api, secret_name, secret_value, is_debug = false){
-
   try {
     let fancyTextTreatment = '\u001b[3m'
-      if (api.isOrg()) {
-          if (!is_debug) {
-              Core.info(fancyTextTreatment + ' Updating Org Secret')
-          } else {
-              console.log("Updating Org Secret")
-          }
+    if (api.isOrg()) {
+      if (!is_debug) {
+        Core.info(fancyTextTreatment + ' Updating Org Secret')
       } else {
-          if (!is_debug) {
-              Core.info(fancyTextTreatment + ' Updating Repo Secret')
-          } else {
-              console.log("Updating Repo Secret")
-          }
+        console.log("Updating Org Secret")
+      }
+    } else {
+      if (!is_debug) {
+        Core.info(fancyTextTreatment + ' Updating Repo Secret')
+      } else {
+        console.log("Updating Repo Secret")
+      }
     }
     const {key_id, key} = await api.getPublicKey()
 
     const data = await api.createSecret(key_id, key, secret_name, secret_value)
 
-      if (api.isOrg()) {
-          if (!is_debug) {
-              data.visibility = Core.getInput('visibility')
-          } else {
-              data.visibility = 'all'
-        }
-        // don't need a debug check here because data.visibility is hardcoded to all
+    if (api.isOrg()) {
+      if (!is_debug) {
+        data.visibility = Core.getInput('visibility')
+      } else {
+        data.visibility = 'all'
+      }
+      // don't need a debug check here because data.visibility is hardcoded to all
       if (data.visibility === 'selected') {
         data.selected_repository_ids = Core.getInput('selected_repository_ids')
       }
@@ -52,26 +51,26 @@ async function boostrap(api, secret_name, secret_value, is_debug = false){
 
     console.error(response.status, response.data)
       if (!is_debug) {
-          if (response.status >= 400) {
-            Core.setFailed(response.data)
-          } else {
-            Core.setOutput('status', response.status)
-            Core.setOutput('data', response.data)
-          }
+        if (response.status >= 400) {
+          Core.setFailed(response.data)
+        } else {
+          Core.setOutput('status', response.status)
+          Core.setOutput('data', response.data)
+        }
       } else {
-          if (response.status >= 400) {
-              console.error("Yeah, it no workey")
-          } else {
-              console.log("Run Succeeded!")
-          }
+        if (response.status >= 400) {
+          console.error("Yeah, it no workey")
+        } else {
+          console.log("Run Succeeded!")
+        }
     }
 
   } catch (e) {
-      if (!is_debug) {
-          Core.setFailed(e.message)
-      } else {
-          console.log(e.message)
-      }
+    if (!is_debug) {
+      Core.setFailed(e.message)
+    } else {
+      console.log(e.message)
+    }
     console.error(e)
   }
 }
@@ -84,18 +83,18 @@ try {
   const repository = String(Core.getInput('repository')).trim()
   const token = Core.getInput('token')
   const org = String(Core.getInput('org')).trim()
-    let api
-    if (Core.getInput('org-name') !== "") {
-        let org_name = String(Core.getInput('org-name')).trim()
-        api = new Api(token, org_name, true, org_name)
-    } else {
-        api = new Api(token, repository, !!org)
-    }
+  let api
+  if (Core.getInput('org-name') !== "") {
+    let org_name = String(Core.getInput('org-name')).trim()
+    api = new Api(token, org_name, true, org_name)
+  } else {
+    api = new Api(token, repository, !!org)
+  }
 
   boostrap(api, name, value)
 
 } catch (error) {
-    // console.log((error))
+  // console.log((error))
   Core.setFailed(error.message)
 }
 
