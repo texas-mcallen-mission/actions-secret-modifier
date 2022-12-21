@@ -9,7 +9,7 @@ Create or edit actions secrets in repository or organizations
 #### Modifying Repo Secrets
 
 | name | type | required | description |
-| --- | --- |:--- | --- |
+| --- | --- | :---: | :--- |
 | name | `String` | yes | secret name |
 | value | `String` | yes | value of secret |
 | token | `String` | yes | Repository [Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)<sup>1</sup> |
