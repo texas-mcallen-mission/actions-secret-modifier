@@ -15,8 +15,8 @@ module.exports = class Api {
    * @returns {Promise<{data: object}>} - Fetch response
    */
   constructor(auth, repo, org, org_name) {
-      console.log('ORG_NAME:', org_name)
-      console.log('REPO',repo)
+    console.log('ORG_NAME:', org_name)
+    console.log('REPO', repo)
     this.octokit = new Octokit({ auth })
     this._repo = repo
     this._base = 'repos'
@@ -43,8 +43,8 @@ module.exports = class Api {
       })
       return data
     } else {
-        let testString = 'GET /' + String(this._base).trim() + "/" + String(this._repo).trim() + "/actions/secrets/public-key"
-      let { data } = await this.octokit.request(/*'GET /:base/:repo/actions/secrets/public-key'*/ testString, {
+      let testString = 'GET /' + String(this._base).trim() + '/' + String(this._repo).trim() + '/actions/secrets/public-key'
+      let { data } = await this.octokit.request('GET /{base}/{repo}/actions/secrets/public-key' /* testString*/, {
         base: this._base,
         repo: this._repo
       })
@@ -88,16 +88,16 @@ module.exports = class Api {
         org_name: this._org_name,
         name: name,
         data
-      });
+      })
     } else {
-      let split_args = String(this._repo).split("/");
+      let split_args = String(this._repo).split('/');
       return this.octokit.request('PUT /{base}/{owner}/{repo}/actions/secrets/{name}', {
         base: 'repos',
         owner: split_args[0],
         repo: split_args[1],
         name,
         data
-      });
+      })
     }
   }
 

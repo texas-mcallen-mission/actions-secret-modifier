@@ -10,7 +10,7 @@ const Api = require('./src/api')
  * @param {Api} api - Api instance
  * @param {string} secret_name - Secret key name
  * @param {string} secret_value - Secret raw value
- * @param is_debug
+ * @param is_debug {boolean} - discards the stuff that requires running inside of a Github action for context data.
  * @see https://developer.github.com/v3/actions/secrets/#create-or-update-an-organization-secret
  * @see https://dev.to/devteam/announcing-the-github-actions-hackathon-on-dev-3ljn
  * @see https://dev.to/habibmanzur/placeholder-title-5e62
