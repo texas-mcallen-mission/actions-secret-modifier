@@ -12,7 +12,7 @@ Create or edit actions secrets in repository or organizations
 | --- | --- |:--- | --- |
 | name | `String` | yes | secret name |
 | value | `String` | yes | value of secret |
-| token | `String` | yes | Repository [Access Token<sup>1</sup>](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) |
+| token | `String` | yes | Repository [Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)<sup>1</sup> |
 | repository | `String` | yes | ``${{ github.repository }}`` - repository you're trying to modify the secret of |
 
 <sup>1:</sup> *this supports the currently beta scoped personal access tokens. Required scopes:  actions, secrets, and workflows: read and write*
