@@ -105,9 +105,12 @@ module.exports = class Api {
 //       name,
 //       data
 //     })
-          return this.octokit.request('PUT /{base}/{repo}/actions/secrets/{name}', {
+          let test25 = this._repo.split("/")
+          return this.octokit.request('PUT /{base}/{owner}/{repo}/actions/secrets/{name}', {
     base: 'repos',
-    repo: 'texas-mcallen-mission/deploy-tester',
+            owner: test25[0],
+            repo: test25[1]
+//     repo: 'texas-mcallen-mission/deploy-tester',
     name,
     data
 })
