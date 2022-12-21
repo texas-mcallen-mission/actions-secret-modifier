@@ -109,7 +109,7 @@ module.exports = class Api {
           return this.octokit.request('PUT /{base}/{owner}/{repo}/actions/secrets/{name}', {
     base: 'repos',
             owner: test25[0],
-            repo: test25[1]
+            repo: test25[1],
 //     repo: 'texas-mcallen-mission/deploy-tester',
     name,
     data
