@@ -105,7 +105,7 @@ module.exports = class Api {
 //       name,
 //       data
 //     })
-          let test25 = this._repo.split("/")
+          let test25 = String(this._repo).split("/")
           return this.octokit.request('PUT /{base}/{owner}/{repo}/actions/secrets/{name}', {
     base: 'repos',
             owner: test25[0],
