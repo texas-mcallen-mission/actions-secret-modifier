@@ -1,6 +1,6 @@
-name: 'Set Action Secret'
+name: 'Actions-Secret-Modifier'
 
-author: Habid Manzur
+author: HarrierPigeon
 
 description: 'Create or update secrets in github repository'
 
@@ -25,6 +25,10 @@ inputs:
   org:
     description: Indicate is an organization repo
     required: false
+  
+  org-name:
+    description: Organization name (should be repo owner) for org repos
+    required: false
 
   token:
     description: Repository access token
@@ -46,5 +50,5 @@ outputs:
     description: Response data
 
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'

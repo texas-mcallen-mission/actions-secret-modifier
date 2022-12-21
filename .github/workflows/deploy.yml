@@ -14,22 +14,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node v${{ secrets.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ secrets.NODE_VERSION }}
 
       - run: npm install
-      - run: npm run lint
+      - run: npm run lint # I'm getting tired of this egregious thing
 
   build:
     name: Build bundle
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Git
         run: |
@@ -38,7 +38,7 @@ jobs:
           git checkout -b release/${{ github.event.inputs.version }}
 
       - name: Test and Build
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ secrets.NODE_VERSION }}
       - run: |
@@ -73,14 +73,15 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+        uses: softprops/action-gh-release@v1 #elgohr/Github-Release-Action@v4 # was actions/create-release@v1
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
         with:
-          tag_name: v/${{ github.event.inputs.version }}
-          release_name: v${{ github.event.inputs.version }}
-          commitish: release/${{ github.event.inputs.version }}
+          tag_name: v${{ github.event.inputs.version }} # Straight Port
+          name: v${{ github.event.inputs.version }} # was release_name
+          target_commitish: release/${{ github.event.inputs.version }} # was commitish
           body: |
             Created on ${{ env.TIME }} using automated Workflow by ${{ github.actor }}
           draft: false
           prerelease: false
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}

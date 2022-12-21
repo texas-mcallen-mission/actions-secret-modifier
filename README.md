@@ -59,6 +59,8 @@ with:
 
 ### For organizations
 
+*note: seems like you need admin rights on your access token for this to work.*
+
 ```YAML
 uses: hmanzur/actions-set-secret@v2.0.0
 with:
@@ -81,3 +83,8 @@ with:
 
 - [Get an organization public key](https://developer.github.com/v3/actions/secrets/#get-an-organization-public-key)
 - [Create or update an organization secret](https://developer.github.com/v3/actions/secrets/#create-or-update-an-organization-secret)
+
+
+## Attribution
+
+Thanks to [hmanzur](https://github.com/hmanzur/) for the [repo](https://github.com/hmanzur/actions-set-secret) we forked this from!
