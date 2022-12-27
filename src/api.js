@@ -37,18 +37,20 @@ module.exports = class Api {
     // let request_string = 'GET /' + this._base
     if (this._org) {
       console.log('OOOORG NAME', this._org_name)
-        console.log('test')
-        let splitString = this._org_name.split('/')
 
+      console.log('test')
+      let splitString = this._org_name.split('/')
       let { data } = await this.octokit.request('GET /orgs/{org_name}/actions/secrets/public-key', {
-        org_name: splitString[0]
+        org_name: splitString[0].trim()
+
       })
       return data
     } else {
+      let ownerName = this._repo.split('/')[0]
     //   let testString = 'GET /' + String(this._base).trim() + '/' + String(this._repo).trim() + '/actions/secrets/public-key'
       let { data } = await this.octokit.request('GET /{base}/{repo}/actions/secrets/public-key' /* testString*/, {
         base: this._base,
-        repo: this._repo
+        repo: ownerName
       })
 
       return data
