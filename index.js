@@ -32,7 +32,7 @@ async function boostrap(api, secret_name, secret_value, is_debug = false){
       }
     }
     const {key_id, key} = await api.getPublicKey()
-
+    Core.info('Public key obtained.')
     const data = await api.createSecret(key_id, key, secret_name, secret_value)
 
     if (api.isOrg()) {
