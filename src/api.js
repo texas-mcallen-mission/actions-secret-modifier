@@ -98,7 +98,7 @@ module.exports = class Api {
       })
     } else {
       let split_args = String(this._repo).split('/')
-      Core.info('split_args: ' + split_args[0] + ', ' + split_args[1])
+      Core.info('split_args: ' + split_args[0] + ', ' + split_args[1] + 'SECRET_NAME: ' + name)
       return this.octokit.request('PUT /{base}/{owner}/{repo}/actions/secrets/{name}', {
         base: 'repos',
         owner: split_args[0],
