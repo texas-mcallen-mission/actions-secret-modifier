@@ -48,6 +48,7 @@ module.exports = class Api {
     } else {
       let ownerName = this._repo.split('/')[0]
       let repoName = this._repo.split('/')[1]
+      Core.info('repo fullString:: ' + this._repo + ownerName + ', ' + repoName)
       //   let testString = 'GET /' + String(this._base).trim() + '/' + String(this._repo).trim() + '/actions/secrets/public-key'
       let { data } = await this.octokit.request('GET /{base}/{owner}/{repo}/actions/secrets/public-key' /* testString*/, {
         base: this._base,
