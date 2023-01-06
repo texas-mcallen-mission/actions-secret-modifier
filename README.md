@@ -63,7 +63,7 @@ with:
   token: ${{ secrets.REPO_ACCESS_TOKEN }} # Personal access token approved by your org.
   visibility: 'all'
   org: true
-  org-name ${{ GITHUB_REPOSITORY_OWNER }}
+  org-name: ${{ GITHUB_REPOSITORY_OWNER }}
 ```
 
 ## References
